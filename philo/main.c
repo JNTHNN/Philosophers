@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,31 +6,35 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:28:37 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/01/25 15:29:40 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:51:28 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/philosophers.h"
 
-int	main(int argc, char **argv)
+void	init_arg(t_arg *arg, int argc, char **argv)
 {
-	int	number_of_philosophers = 0;
-	int	time_to_die = 0;
-	int	time_to_eat = 0;
-	int	time_to_sleep = 0;
-	int	number_of_times_each_philosopher_must_eat = 0;
-	
+	// checker que des nb positifs
 	if (argc == 5 || argc == 6)
 	{
 		if (argc == 6)
-			number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]); // nb of meals (optional)
-		number_of_philosophers = ft_atoi(argv[1]); // = nb of forks cuz 1 philo = 1 fork
-		time_to_die = ft_atoi(argv[2]); // in milliseconds , if philo doesnt eat after his last meals or begin = DIE
-		time_to_eat = ft_atoi(argv[3]); // in milliseconds, time to eat for a philo
-		time_to_sleep = ft_atoi(argv[4]); // in milliseconds, time to sleep for a philo
+			arg->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]); // nb of meals (optional)
+		arg->number_of_philosophers = ft_atoi(argv[1]); // = nb of forks cuz 1 philo = 1 fork
+		arg->time_to_die = ft_atoi(argv[2]); // in milliseconds , if philo doesnt eat after his last meals or begin = DIE
+		arg->time_to_eat = ft_atoi(argv[3]); // in milliseconds, time to eat for a philo
+		arg->time_to_sleep = ft_atoi(argv[4]); // in milliseconds, time to sleep for a philo
+	}
+}
 
-		// proteger printf avec mutex
-		printf(" nb philo : %d / die : %d / eat : %d / sleep : %d / (opt) nb of meals : %d\n", number_of_philosophers, time_to_die, time_to_eat, time_to_sleep, number_of_times_each_philosopher_must_eat);
+int	main(int argc, char **argv)
+{
+	t_arg	arg;
+	
+	if (argc > 0) // check des args ici ou dans init_arg ?
+	{
+		init_arg(&arg, argc, argv);
+		
+		printf(" nb philo : %d / die : %d / eat : %d / sleep : %d / (opt) nb of meals : %d\n", arg.number_of_philosophers, arg.time_to_die, arg.time_to_eat, arg.time_to_sleep, arg.number_of_times_each_philosopher_must_eat); 	// proteger printf avec mutex
 	}
 	else
 		printf("philo : no arguments");
@@ -50,3 +54,7 @@ int	main(int argc, char **argv)
 // retval = pointer vers var qui peut contenir le return de la fonc routine du thread( la fonction start_routine qu'on a fournie lors de la crea du thread)
 // if no need, on peut NULL
 // valeurs de retour : if succes = 0 / if not = code erreur
+
+
+//	DATA RACE
+//	2 threads accedent a la meme zone memoire en meme temps, le thread 2 n'attend pas la fin du 1 pour commencer son iteration de la meme donnee par exemple 
