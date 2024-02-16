@@ -6,7 +6,7 @@
 #    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 10:45:33 by jgasparo          #+#    #+#              #
-#    Updated: 2024/02/07 12:45:48 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/02/16 17:09:57 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,15 @@ SRC = main.c \
 		sources/ft_atoi.c \
 		 
 OBJ = $(SRC:.c=.o)
-LIBS = -lpthread
-
+LIBS = -lpthread 
+TEST = -fsanitize=thread -g
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
+
+test: 
+	$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(TEST) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

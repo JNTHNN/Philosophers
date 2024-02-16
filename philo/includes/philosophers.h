@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:27:11 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/13 19:42:38 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/02/16 11:12:46 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 
 typedef struct s_arg
 {
-	int	number_of_philosophers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	number_of_times_each_philosopher_must_eat;
+	int	number_of_philosophers;  // = nb of forks cuz 1 philo = 1 fork
+	int	time_to_die; // in milliseconds , if philo doesnt eat after his last meals or begin = DIE
+	int	time_to_eat; // in milliseconds, time to eat for a philo
+	int	time_to_sleep; // in milliseconds, time to sleep for a philo
+	int	number_of_times_each_philosopher_must_eat; // nb of meals (optional)
 }	t_arg;
 
 typedef	struct s_philo
