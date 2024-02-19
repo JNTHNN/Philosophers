@@ -6,11 +6,45 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:28:37 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/16 18:17:31 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:21:43 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/philosophers.h"
+
+size_t	get_current_time(void)
+{
+	struct timeval	time;
+	
+	if (gettimeofday(&time, NULL) == -1)
+		write(2, "gettimeofday() error\n", 22);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+int	ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < milliseconds)
+		usleep(milliseconds / 10);
+	return (0);
+}
+
+void	thinking(void)
+{
+	
+}
+
+void	sleeping(void)
+{
+	
+}
+
+void	eating(void)
+{
+	
+}
 
 void	*philo_routine(void *t_id)
 {
@@ -18,7 +52,7 @@ void	*philo_routine(void *t_id)
 	
 	tid = (long)t_id;
 	 // contient la routine des philos
-	printf("Ok moi je suis le %li e philo\n", tid);
+	printf("Ok moi je suis le %li e philo et il est %zu\n", tid, get_current_time());
 	
 	return (NULL);
 }
@@ -28,7 +62,6 @@ void	create_thread(t_arg *arg) // passe la fonction philo_routine
 {
 	// creation des threads par nombre de philo
 	long		i;
-	int			success;
 	pthread_t	*philo;
 	
 	i = 0;
@@ -37,8 +70,7 @@ void	create_thread(t_arg *arg) // passe la fonction philo_routine
 		exit(printf("error malloc")); // a modifier 
 	while (i < arg->number_of_philosophers)
 	{
-		success = pthread_create(&philo[i], NULL, philo_routine, (void*)i);
-		if (success != 0)
+		if (pthread_create(&philo[i], NULL, philo_routine, (void*)i))
 			printf("ERROR : IMPOSSIBLE DE CREER LE THREAD %ld", i);
 		printf("Creation du thread [%li]\n", (long)philo[i]);
 		i++;
