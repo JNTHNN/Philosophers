@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:34:51 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/22 17:41:09 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:12:54 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int	ft_atoi(const char *str)
 	sign = 1;
 	result = 0;
 	str = check_str(str);
-	
+
 	while (str[i] >= '0' && str[i] <= '9')
 		result = result * 10 + (str[i++] - '0');
 	if ((result * sign) >= 2147483648 || (result * sign) <= -2147483649)
 	{
-		printf("error atoi"); // gerer l'erreur
+		printf("error atoi");
 		exit(1);
 	}
 	return (result * sign);

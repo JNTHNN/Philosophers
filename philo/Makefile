@@ -6,7 +6,7 @@
 #    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 10:45:33 by jgasparo          #+#    #+#              #
-#    Updated: 2024/02/16 17:09:57 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/02/23 21:55:25 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRC = main.c \
 		sources/ft_atoi.c \
+		sources/threads.c \
+		sources/time.c \
 		 
 OBJ = $(SRC:.c=.o)
 LIBS = -lpthread 
