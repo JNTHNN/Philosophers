@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/23 09:14:44 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:28:14 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,44 @@ void    philo_routine(t_philo *philo)
         ft_usleep(1000);
         write_status(philo, "is sleeping");
         ft_usleep(1000);
+        if (get_current_time() % 3 == 0)
+            break;
     }
+    system("leaks philo");
+    exit(0);
+}
+int   wait_threads(t_philo *philo, t_arg *arg)
+{
+    int i;
+
+    i = 0;
+    while (i < arg->number_of_philosophers)
+    {
+        if (pthread_join(philo[i].thread_id, NULL) != 0)
+        {
+            printf("pthread_join error\n");
+            return (0);
+        }
+        i++;
+    }
+    return (1);
+}
+
+int    create_threads(t_philo *philo, t_arg *arg)
+{
+    int i;
+
+    i = 0;
+    while (i < arg->number_of_philosophers)
+    {
+        if (pthread_create(&philo[i].thread_id, NULL, (void *)philo_routine, &philo[i]) != 0)
+        {
+            printf("pthread_create error\n");
+            return (0);
+        }
+        i++;
+    }
+    return (1);
 }
 
 int    init_philo(t_philo **philo, t_arg *arg)
@@ -96,6 +133,11 @@ int main(int argc, char **argv)
         return (printf("error arg\n"), 1);
     if (!init_philo(&philo, &arg))
         return (printf("error init philo\n"), 1);
+    if (!create_threads(philo, &arg))
+        return (printf("error create threads\n"), 1);
+    if (!wait_threads(philo, &arg))
+        return (printf("error wait threads\n"), 1);
+    
 
     return (0);
 
