@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/23 21:56:24 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:32:05 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int main(int argc, char **argv)
 		return (printf("error arg\n"), 1);
 	if (!init_philo(&philo, &arg))
 		return (printf("error init philo\n"), 1);
+	if 
 	if (!create_threads(philo, &arg))
 		return (printf("error create threads\n"), 1);
 	if (!wait_threads(philo, &arg))

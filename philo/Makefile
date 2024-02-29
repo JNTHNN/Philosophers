@@ -6,7 +6,7 @@
 #    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 10:45:33 by jgasparo          #+#    #+#              #
-#    Updated: 2024/02/23 21:55:25 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/02/24 10:47:57 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = main.c \
 OBJ = $(SRC:.c=.o)
 LIBS = -lpthread 
 TEST = -fsanitize=thread -g
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
