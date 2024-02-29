@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/29 13:32:05 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:01:42 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void	write_status(t_philo *philo, char *status, size_t start_time)
 {
-	printf("%zu %d %s\n", get_current_time() - start_time, philo->id, status);
+	printf("%-10zu\t %-10d %s\n", get_current_time() - start_time, philo->id, status);
+} // YELLOW "%06ld\t" RST_COL PURPLE "%03d\t" RST_COL CYAN "%s"
+
+void	write_status_id(int i, char *status, size_t start_time)
+{
+	printf("\e[32m%-10zu\e[0m %-10d %s\n", get_current_time() - start_time, i, status);
 }
 
 void	philo_routine(t_philo *philo)
@@ -75,6 +80,14 @@ int init_arg(int argc, char **argv, t_arg *arg)
 	return (0);
 }
 
+int	one_philo(t_arg *arg)
+{
+	write_status_id(1, "has taken a fork", arg->start_simulation);
+	ft_usleep(arg->time_to_die);
+	write_status_id(1, "died", arg->start_simulation);
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
 	t_arg   arg;
@@ -82,6 +95,8 @@ int main(int argc, char **argv)
 
 	if (!init_arg(argc, argv, &arg))
 		return (printf("error arg\n"), 1);
+	if (arg.number_of_philosophers == 1)
+		return (one_philo(&arg));
 	if (!init_philo(&philo, &arg))
 		return (printf("error init philo\n"), 1);
 	if 
