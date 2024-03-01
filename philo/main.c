@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/29 17:01:42 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:28:14 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	philo_routine(t_philo *philo)
 	start_time = get_current_time();
 	while (1)
 	{
-		write_status(philo, "is thinking", start_time);
+		write_status(philo, THINK, start_time);
 		ft_usleep(1000);
-		write_status(philo, "is eating", start_time);
+		write_status(philo, EAT, start_time);
 		ft_usleep(1000);
-		write_status(philo, "is sleeping", start_time);
+		write_status(philo, SLEEP, start_time);
 		ft_usleep(1000);
 		if (get_current_time() % 2 == 0)
 			break ;
@@ -57,6 +57,8 @@ int    init_philo(t_philo **philo, t_arg *arg)
 		(*philo)[i].id = i + 1;
 		(*philo)[i].nb_eat = 0;
 		(*philo)[i].last_meal_time = 0;
+		pthread_mutex_init(&(*philo)[i].left_fork, NULL);
+		pthread_mutex_init(&(*philo)[i].right_fork, NULL);
 		i++;
 	}
 	return (1);
@@ -84,7 +86,7 @@ int	one_philo(t_arg *arg)
 {
 	write_status_id(1, "has taken a fork", arg->start_simulation);
 	ft_usleep(arg->time_to_die);
-	write_status_id(1, "died", arg->start_simulation);
+	write_status_id(1, DEAD, arg->start_simulation);
 	return (0);
 }
 
@@ -99,11 +101,12 @@ int main(int argc, char **argv)
 		return (one_philo(&arg));
 	if (!init_philo(&philo, &arg))
 		return (printf("error init philo\n"), 1);
-	if 
 	if (!create_threads(philo, &arg))
 		return (printf("error create threads\n"), 1);
 	if (!wait_threads(philo, &arg))
 		return (printf("error wait threads\n"), 1);
+	if (!cleaning(&arg, philo))
+	
 	
 
 	return (0);

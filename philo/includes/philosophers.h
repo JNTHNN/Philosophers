@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:27:11 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/23 21:19:44 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:27:39 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <limits.h>
+# define EAT "is eating"
+# define SLEEP "is sleeping"
+# define THINK "is thinking"
+# define DEAD "died"
 
 typedef struct s_philo
 {
 	int				id;
 	pthread_t		thread_id;
 	pthread_mutex_t	left_fork;
-	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	right_fork;
 	unsigned int	nb_eat;
 	long			last_meal_time;
 }	t_philo;
