@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/29 18:28:14 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/01 23:44:14 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,49 @@ int    init_philo(t_philo **philo, t_arg *arg)
 	}
 	return (1);
 }
+void	destroy_fork(t_arg *arg, int nb_forks)
+{
+	int	i;
+	
+	i = 0;
+	while (i < nb_forks)
+	{
+		pthread_mutex_destroy(&arg->forks[i]);
+		i++;
+	}
+	free(arg->forks);
+}
+
+int	init_fork(t_arg *arg)
+{
+	int	i;
+
+	i = 0;
+	arg->forks = malloc(sizeof(pthread_mutex_t) * arg->number_of_philosophers);
+	if (!arg->forks)
+		return (0);
+	while (i < arg->number_of_philosophers)
+	{
+		if (pthread_mutex_init(&arg->forks[i], NULL))
+		{
+			destroy_fork(arg, i);
+			return (0);
+		}
+	}
+	return (0);
+}
 
 int init_arg(int argc, char **argv, t_arg *arg)
 {
 	if (argc == 5 || argc == 6)
 	{
 		if (argc == 6)
-			arg->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+		{
+			if (!ft_atoi(argv[5]))
+				return (0);
+			else	
+				arg->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+		}
 		else 
 			arg->number_of_times_each_philosopher_must_eat = -1;
 		arg->number_of_philosophers = ft_atoi(argv[1]);
@@ -77,6 +113,8 @@ int init_arg(int argc, char **argv, t_arg *arg)
 		arg->time_to_eat = ft_atoi(argv[3]); 
 		arg->time_to_sleep = ft_atoi(argv[4]);
 		arg->start_simulation = get_current_time();
+		if (!init_fork(arg))
+			return(0);
 		return (1);
 	}
 	return (0);
@@ -105,7 +143,7 @@ int main(int argc, char **argv)
 		return (printf("error create threads\n"), 1);
 	if (!wait_threads(philo, &arg))
 		return (printf("error wait threads\n"), 1);
-	if (!cleaning(&arg, philo))
+	// if (!cleaning(&arg, philo))
 	
 	
 

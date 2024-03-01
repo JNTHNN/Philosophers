@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:27:11 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/29 18:27:39 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/01 23:24:24 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct s_philo
 {
 	int				id;
 	pthread_t		thread_id;
-	pthread_mutex_t	left_fork;
-	pthread_mutex_t	right_fork;
+	int				left_fork;
+	int				right_fork;
 	unsigned int	nb_eat;
 	long			last_meal_time;
 }	t_philo;
@@ -42,6 +42,7 @@ typedef struct s_arg
 	int		time_to_sleep;
 	int		number_of_times_each_philosopher_must_eat;
 	long	start_simulation;
+	pthread_mutex_t	*forks;
 	t_philo	*philos;
 }	t_arg;
 
