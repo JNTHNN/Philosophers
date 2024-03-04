@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/04 17:49:49 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:55:17 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,11 @@ void	destroy_fork(t_arg *arg, int nb_forks)
 	free(arg->forks);
 }
 
-
-
-
 int	one_philo(t_arg *arg)
 {
-	pthread_mutex_lock(&arg->philo_status);
 	write_status(1, FORK, arg);
 	ft_usleep(arg->time_to_die);
 	write_status(1, DEAD, arg);
-	pthread_mutex_unlock(&arg->philo_status);
 	return (0);
 }
 

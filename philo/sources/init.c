@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 21:07:49 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/04 17:48:59 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/04 19:23:47 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	init_fork(t_arg *arg)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	arg->forks = malloc(sizeof(pthread_mutex_t) * arg->number_of_philosophers);
 	if (!arg->forks)
 		return (0);
-	while (i < arg->number_of_philosophers)
+	while (++i < arg->number_of_philosophers)
 	{
 		if (pthread_mutex_init(&arg->forks[i], NULL))
 		{
