@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_old.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:28:37 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/19 19:21:43 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:11:05 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,16 @@ void	create_thread(t_arg *arg) // passe la fonction philo_routine
 // {
 // 	philo->id += 1;
 // }
+
+void	write_status(t_philo *philo, char *status, size_t start_time)
+{
+	printf("%-10zu\t %-10d %s\n", get_current_time() - start_time, philo->id, status);
+} // YELLOW "%06ld\t" RST_COL PURPLE "%03d\t" RST_COL CYAN "%s"
+
+void	write_status_id(int i, char *status, size_t start_time)
+{
+	printf("\e[32m%-10zu\e[0m %-10d %s\n", get_current_time() - start_time, i, status);
+}
 
 void	init_arg(t_arg *arg, int argc, char **argv)
 {
