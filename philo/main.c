@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/05 12:18:15 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:37:09 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	philo_dead(t_arg *arg)
 		if ( i == arg->number_of_philosophers)
 			arg->full_eat = 1;
 	}
+	if (arg->full_eat|| (int)arg->philos->nb_eat == arg->number_of_times_each_philosopher_must_eat)
+		return ;
 }
 
 // int cleaning(t_arg *arg)
@@ -82,10 +84,9 @@ int main(int argc, char **argv)
 	if (!wait_threads(&arg))
 		return (printf("error wait threads\n"), 1);
 	// if (!cleaning(&arg, philo))
-	// destroy_fork(&arg, arg.number_of_philosophers);
-	// free(arg.philos);
-	ft_usleep(10);
-	philo_dead(&arg);
+	destroy_fork(&arg, arg.number_of_philosophers);
+	free(arg.philos);
+	
 	
 	
 

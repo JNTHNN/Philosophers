@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 10:30:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/04 19:25:58 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:24:16 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ void	eating(int id, t_philo *philo)
 	
 }
 
-void	thinking()
+void	thinking(t_arg *arg, t_philo *philo)
 {
-	
+	write_status(philo->id, THINK, arg);
 }
 
-void	sleeping()
+void	sleeping(t_arg *arg, t_philo *philo)
 {
-	
+	write_status(philo->id, SLEEP, arg);
+	ft_usleep(arg->time_to_sleep);
 }
 
 void	philo_routine(void *p_arg)
@@ -53,12 +54,12 @@ void	philo_routine(void *p_arg)
 		ft_usleep(10);
 	while (arg->dead != 1)
 	{
+		thinking(arg, philo);
 		eating(philo->id, philo);
-		if (arg->full_eat)
+		if (arg->full_eat|| (int)arg->philos->nb_eat == arg->number_of_times_each_philosopher_must_eat)
 			break ;
-		write_status(philo->id, SLEEP, arg);
-		ft_usleep(arg->time_to_sleep);
-		write_status(philo->id, THINK, arg);
+		sleeping(arg, philo);
+		thinking(arg, philo);
 	}
 	// return (NULL);
 }
