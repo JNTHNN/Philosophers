@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/04 18:55:17 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:18:15 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,37 @@ int	one_philo(t_arg *arg)
 	return (0);
 }
 
+void	philo_dead(t_arg *arg)
+{
+	int	i;
+	size_t	time;
+
+	while (!arg->full_eat)
+	{
+		i = -1;
+		time = get_current_time();
+		while (++i < arg->number_of_philosophers)
+		{
+			if ((time - arg->philos[i].last_meal_time) > (size_t)arg->time_to_die)
+			{
+				write_status(i, DEAD, arg);
+				arg->dead = 1;
+				return ;
+			}
+		}
+		i = 0;
+		while (arg->number_of_times_each_philosopher_must_eat != -1 && i < arg->number_of_philosophers && arg->number_of_times_each_philosopher_must_eat <= (int)arg->philos[i].nb_eat)
+			i++;
+		if ( i == arg->number_of_philosophers)
+			arg->full_eat = 1;
+	}
+}
+
+// int cleaning(t_arg *arg)
+// {
+// 	// mutex_destroy + free
+// }
+
 int main(int argc, char **argv)
 {
 	t_arg   arg;
@@ -51,9 +82,10 @@ int main(int argc, char **argv)
 	if (!wait_threads(&arg))
 		return (printf("error wait threads\n"), 1);
 	// if (!cleaning(&arg, philo))
-	destroy_fork(&arg, arg.number_of_philosophers);
-	free(arg.philos);
-	
+	// destroy_fork(&arg, arg.number_of_philosophers);
+	// free(arg.philos);
+	ft_usleep(10);
+	philo_dead(&arg);
 	
 	
 
