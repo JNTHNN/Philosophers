@@ -6,7 +6,7 @@
 #    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 10:45:33 by jgasparo          #+#    #+#              #
-#    Updated: 2024/03/04 12:38:43 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/03/05 20:38:28 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = main.c \
 		sources/init.c \
 		sources/routine.c \
 		sources/write.c \
+		sources/error.c \
 		 
 OBJ = $(SRC:.c=.o)
 LIBS = -lpthread 

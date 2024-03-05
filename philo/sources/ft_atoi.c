@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:34:51 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/02/23 21:12:54 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/05 21:37:22 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,9 @@ static const char	*check_str(const char *str)
 	if (str[i] == '+')
 		i++;
 	else if (str[i] == '-')
-	{
-		printf("error arg negatif\n");
-		exit(1);
-	}
+		return (NULL);
 	if (!ft_isdigit(&str[i]))
-	{
-		printf("error arg not a number\n");
-		exit(1);
-	}
+		return (NULL);
 	return (&str[i]);
 }
 
@@ -58,13 +52,11 @@ int	ft_atoi(const char *str)
 	sign = 1;
 	result = 0;
 	str = check_str(str);
-
+	if (!str)
+		return (ERROR_ARG);
 	while (str[i] >= '0' && str[i] <= '9')
 		result = result * 10 + (str[i++] - '0');
 	if ((result * sign) >= 2147483648 || (result * sign) <= -2147483649)
-	{
-		printf("error atoi");
-		exit(1);
-	}
+		return (ERROR_ARG);
 	return (result * sign);
 }

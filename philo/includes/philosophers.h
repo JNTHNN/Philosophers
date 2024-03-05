@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:27:11 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/05 15:14:30 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/05 21:45:56 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <limits.h>
-# define EAT "is eating"
-# define SLEEP "is sleeping"
-# define THINK "is thinking"
-# define FORK "has taken a fork"
-# define DEAD "died"
+# include "define.h" 
+
 
 typedef struct s_arg	t_arg;
 
@@ -53,6 +50,16 @@ struct s_arg
 	t_philo	*philos;
 };
 
+typedef enum e_error
+{
+	ERROR_ARG = -1,
+	ERROR_MALLOC = -2,
+	ERROR_PHILO = -3,
+	ERROR_THREAD = -4,
+	ERROR_WAIT = -5,
+	ERROR_CLEAN = -6,
+}	t_error;
+
 int		ft_atoi(const char *str);
 void	destroy_fork(t_arg *arg, int nb_forks);
 
@@ -68,11 +75,15 @@ int		create_threads(t_arg *arg);
 void	philo_routine(void *philo);
 
 /*	INIT.C	*/
-int	init_philo(t_arg *arg);
-int	init_fork(t_arg *arg);
-int	init_arg(int argc, char **argv, t_arg *arg);
+int		init_philo(t_arg *arg);
+int		init_fork(t_arg *arg);
+int		init_arg(int argc, char **argv, t_arg *arg);
 
 /*	WRITE.C	*/
 void	write_status(int id, char *str, t_arg *arg);
+
+/*	ERROR.C	*/
+
+int		p_error(int error_code);
 
 #endif
