@@ -1,12 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_
+.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:34:51 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/05 21:37:22 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:13:57 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +43,7 @@ static const char	*check_str(const char *str)
 	return (&str[i]);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
 	long long int	result;
 	int				i;

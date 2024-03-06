@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 10:30:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/05 17:30:41 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:53:57 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	eating(int id, t_philo *philo)
 	ft_usleep(arg->time_to_eat);
 	pthread_mutex_unlock(&(arg->forks[philo->left_fork]));
 	pthread_mutex_unlock(&(arg->forks[philo->right_fork]));
-
-	
 }
 
 void	thinking(t_arg *arg, t_philo *philo)
@@ -49,7 +47,6 @@ void	philo_routine(void *p_arg)
 
 	philo = (t_philo *)p_arg;
 	arg = philo->arg;
-	
 	philo->last_meal_time = arg->start_simulation;
 	if (philo->id % 2)
 		ft_usleep(10);
@@ -57,10 +54,9 @@ void	philo_routine(void *p_arg)
 	{
 		thinking(arg, philo);
 		eating(philo->id, philo);
-		if (arg->full_eat|| (int)arg->philos->nb_eat == arg->number_of_times_each_philosopher_must_eat)
+		if (arg->is_fed || (int)arg->philos->nb_eat == arg->nb_eat_limit)
 			break ;
 		sleeping(arg, philo);
 		thinking(arg, philo);
 	}
-	// return (NULL);
 }

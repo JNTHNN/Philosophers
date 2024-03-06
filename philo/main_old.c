@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:28:37 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/04 12:11:05 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:22:15 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	init_arg(t_arg *arg, int argc, char **argv)
 	if (argc == 5 || argc == 6)
 	{
 		if (argc == 6)
-			arg->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]); 
+			arg->nb_eat_limit = ft_atoi(argv[5]); 
 		arg->number_of_philosophers = ft_atoi(argv[1]);
 		arg->time_to_die = ft_atoi(argv[2]); 
 		arg->time_to_eat = ft_atoi(argv[3]); 
@@ -119,7 +119,7 @@ int	main(int argc, char **argv)
 		init_arg(&arg, argc, argv);
 		create_thread(&arg);
 		
-		printf(" nb philo : %d / die : %d / eat : %d / sleep : %d / (opt) nb of meals : %d\n", arg.number_of_philosophers, arg.time_to_die, arg.time_to_eat, arg.time_to_sleep, arg.number_of_times_each_philosopher_must_eat); 	// proteger printf avec mutex
+		printf(" nb philo : %d / die : %d / eat : %d / sleep : %d / (opt) nb of meals : %d\n", arg.number_of_philosophers, arg.time_to_die, arg.time_to_eat, arg.time_to_sleep, arg.nb_eat_limit); 	// proteger printf avec mutex
 	}
 	else
 		printf("philo : no arguments");
@@ -144,3 +144,5 @@ int	main(int argc, char **argv)
 
 //	DATA RACE
 //	2 threads accedent a la meme zone memoire en meme temps, le thread 2 n'attend pas la fin du 1 pour commencer son iteration de la meme donnee par exemple 
+
+// printf(" nb philo : %d / die : %d / eat : %d / sleep : %d / (opt) nb of meals : %d\n", arg.number_of_philosophers, arg.time_to_die, arg.time_to_eat, arg.time_to_sleep, arg.nb_eat_limit);

@@ -6,7 +6,7 @@
 #    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 10:45:33 by jgasparo          #+#    #+#              #
-#    Updated: 2024/03/05 20:38:28 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/03/06 19:53:22 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,15 @@ NAME = philo
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRC = main.c \
-		sources/ft_atoi.c \
+		sources/ft_atol.c \
 		sources/threads.c \
 		sources/time.c \
 		sources/init.c \
 		sources/routine.c \
 		sources/write.c \
 		sources/error.c \
+		sources/dead.c \
+		sources/clean.c \
 		 
 OBJ = $(SRC:.c=.o)
 LIBS = -lpthread 

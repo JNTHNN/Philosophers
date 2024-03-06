@@ -6,13 +6,11 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:46:23 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/05 21:35:47 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:37:13 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-/* A VOIR SI CAST EN INT POUR RETURN 1 */
 
 int	p_error(int error_code)
 {

@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:27:11 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/05 21:45:56 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:56:32 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <limits.h>
-# include "define.h" 
-
+# include "define.h"
 
 typedef struct s_arg	t_arg;
 
@@ -37,17 +36,17 @@ typedef struct s_philo
 
 struct s_arg
 {
-	int		number_of_philosophers;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		number_of_times_each_philosopher_must_eat;
-	long	start_simulation;
-	int		dead;
-	int		full_eat;
+	int				number_of_philosophers;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	int				nb_eat_limit;
+	long			start_simulation;
+	int				dead;
+	int				is_fed;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t philo_status;
-	t_philo	*philos;
+	pthread_mutex_t	philo_status;
+	t_philo			*philos;
 };
 
 typedef enum e_error
@@ -60,8 +59,7 @@ typedef enum e_error
 	ERROR_CLEAN = -6,
 }	t_error;
 
-int		ft_atoi(const char *str);
-void	destroy_fork(t_arg *arg, int nb_forks);
+long	ft_atol(const char *str);
 
 /*	TIME.C	*/
 size_t	get_current_time(void);
@@ -83,7 +81,14 @@ int		init_arg(int argc, char **argv, t_arg *arg);
 void	write_status(int id, char *str, t_arg *arg);
 
 /*	ERROR.C	*/
-
 int		p_error(int error_code);
+
+/*	DEAD.C	*/
+void	philo_dead(t_arg *arg);
+int		check_death(t_arg *arg);
+
+/*	CLEAN.C	*/
+void	destroy_fork(t_arg *arg, int nb_forks);
+int		cleaning(t_arg *arg);
 
 #endif
