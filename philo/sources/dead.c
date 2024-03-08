@@ -6,15 +6,15 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:25:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/08 01:17:51 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/08 01:38:23 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	philo_starving(t_arg *arg, t_philo *philo)
+static void	philo_starving(t_arg *arg, t_philo *philo)
 {
-	if (arg->time_to_die < arg->start_simulation - philo->last_meal_time)
+	if (arg->time_to_die < (philo->last_meal_time - arg->start_simulation))
 	{
 		pthread_mutex_lock(&arg->philo_status);
 		write_status(philo->id, DEAD, arg);
@@ -23,7 +23,7 @@ void	philo_starving(t_arg *arg, t_philo *philo)
 	}
 }
 
-void	philo_dinner_end(t_arg *arg)
+static void	philo_dinner_end(t_arg *arg)
 {
 	int		i;
 	t_philo	philo;
@@ -48,7 +48,7 @@ void	philo_dead(t_arg *arg)
 	while (arg->run)
 	{
 		i = 0;
-		ft_usleep(100);
+		ft_usleep(10);
 		while (arg->run && i < arg->number_of_philosophers)
 		{
 			pthread_mutex_lock(&arg->dead);

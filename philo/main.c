@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/06 19:52:41 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/06 20:31:41 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	one_philo(t_arg *arg)
 	write_status(1, DEAD, arg);
 	return (0);
 }
-
-
 
 int	main(int argc, char **argv)
 {
