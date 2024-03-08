@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:09:50 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/06 17:36:48 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/08 01:15:13 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 void	write_status(int id, char *str, t_arg *arg)
 {
 	pthread_mutex_lock(&arg->philo_status);
-	if (!arg->dead)
-		printf(GREEN "%-10zu" RESET ORANGE "%-10d" RESET YELLOW"%s\n" RESET, \
+	printf(GREEN "%-10zu" RESET ORANGE "%-10d" RESET YELLOW"%s\n" RESET, \
 				get_current_time() - arg->start_simulation, id, str);
 	pthread_mutex_unlock(&arg->philo_status);
 }

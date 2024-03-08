@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:27:11 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/06 19:56:32 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/08 01:17:39 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	int				left_fork;
 	int				right_fork;
-	unsigned int	nb_eat;
+	int				nb_eat;
 	long			last_meal_time;
 	t_arg			*arg;
 }	t_philo;
@@ -42,11 +42,12 @@ struct s_arg
 	long			time_to_sleep;
 	int				nb_eat_limit;
 	long			start_simulation;
-	int				dead;
 	int				is_fed;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	philo_status;
+	pthread_mutex_t	dead;
 	t_philo			*philos;
+	int				run;
 };
 
 typedef enum e_error
