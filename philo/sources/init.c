@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 21:07:49 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/08 01:19:42 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:16:01 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	init_mutex(t_arg *arg)
 	if (pthread_mutex_init(&arg->philo_status, NULL))
 		return (destroy_fork(arg, arg->number_of_philosophers), 0);
 	if (pthread_mutex_init(&arg->dead, NULL))
-		return (destroy_fork(arg,arg->number_of_philosophers), 0);
+		return (destroy_fork(arg, arg->number_of_philosophers), 0);
 	return (1);
 }
 

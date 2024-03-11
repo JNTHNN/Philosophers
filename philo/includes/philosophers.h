@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:27:11 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/08 01:17:39 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:07:43 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		init_arg(int argc, char **argv, t_arg *arg);
 void	write_status(int id, char *str, t_arg *arg);
 
 /*	ERROR.C	*/
-int		p_error(int error_code);
+int		p_error(int error_code, t_arg *arg);
 
 /*	DEAD.C	*/
 void	philo_dead(t_arg *arg);

@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/06 20:31:41 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:03:48 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ int	main(int argc, char **argv)
 		return (p_error(ERROR_WAIT));
 	if (!cleaning(&arg))
 		return (p_error(ERROR_CLEAN));
-	philo_dead(&arg);
 	return (0);
 }

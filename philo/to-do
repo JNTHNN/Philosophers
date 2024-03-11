@@ -1,0 +1,3 @@
+Free + clean en cas d'erreur (cleaning dans error.c)
+Deadlock en cas de mort car double lock dans philo_starving/write_status(dead.c)
+gestion de la mort via le ft_usleep car check la mort d'un philo apres qu'il est fini de manger (ex ./philo 4 800 20000 200)

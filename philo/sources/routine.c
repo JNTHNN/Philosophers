@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 10:30:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/08 01:30:38 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:06:41 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	philo_routine(void *p_arg)
 		if (!philo->arg->run)
 			break ;
 		sleeping(arg, philo);
-		thinking(arg, philo);
+		thinking(arg, philo); // a voir pour enlever
 	}
 }

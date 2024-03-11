@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:25:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/08 01:38:23 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:07:46 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static void	philo_starving(t_arg *arg, t_philo *philo)
 {
 	if (arg->time_to_die < (philo->last_meal_time - arg->start_simulation))
 	{
-		pthread_mutex_lock(&arg->philo_status);
 		write_status(philo->id, DEAD, arg);
+		// pthread_mutex_lock(&arg->philo_status);
 		arg->run = 0;
-		pthread_mutex_unlock(&arg->philo_status);
+		// pthread_mutex_unlock(&arg->philo_status);
 	}
 }
 
