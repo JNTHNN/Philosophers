@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 21:07:49 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/11 13:16:01 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:22:35 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_philo(t_arg *arg)
 	i = 0;
 	arg->philos = malloc(sizeof(t_philo) * arg->number_of_philosophers);
 	if (!arg->philos)
-		return (p_error(ERROR_MALLOC), 0);
+		return (p_error(ERROR_MALLOC, arg), 0);
 	while (i < arg->number_of_philosophers)
 	{
 		arg->philos[i].id = i + 1;
@@ -40,7 +40,7 @@ int	init_mutex(t_arg *arg)
 	i = -1;
 	arg->forks = malloc(sizeof(pthread_mutex_t) * arg->number_of_philosophers);
 	if (!arg->forks)
-		return (p_error(ERROR_MALLOC), 0);
+		return (p_error(ERROR_MALLOC, arg), 0);
 	while (++i < arg->number_of_philosophers)
 	{
 		if (pthread_mutex_init(&arg->forks[i], NULL))

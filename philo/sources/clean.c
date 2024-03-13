@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:46:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/06 19:52:52 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/13 23:17:18 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	destroy_fork(t_arg *arg, int nb_forks)
 	i = 0;
 	while (i < nb_forks)
 	{
-		pthread_mutex_destroy(&arg->forks[i]);
+		if (pthread_mutex_destroy(&arg->forks[i]))
+			break ;
 		i++;
 	}
 	free(arg->forks);
@@ -43,7 +44,7 @@ int	cleaning(t_arg *arg)
 {
 	if (arg)
 	{
-		destroy_fork(arg, arg->number_of_philosophers);
+		destroy_fork(arg, 0);
 		free(arg->philos);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:11:03 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/11 17:03:48 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/13 23:25:31 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,20 @@ int	one_philo(t_arg *arg)
 int	main(int argc, char **argv)
 {
 	t_arg	arg;
+	(void)argv;
+	(void)argc;
 
 	if (!init_arg(argc, argv, &arg))
-		return (p_error(ERROR_ARG));
+		return (p_error(ERROR_ARG, &arg));
 	if (arg.number_of_philosophers == 1)
 		return (one_philo(&arg));
 	if (!init_philo(&arg))
-		return (p_error(ERROR_PHILO));
+		return (p_error(ERROR_PHILO, &arg));
 	if (!create_threads(&arg))
-		return (p_error(ERROR_THREAD));
+		return (p_error(ERROR_THREAD, &arg));
 	if (!wait_threads(&arg))
-		return (p_error(ERROR_WAIT));
+		return (p_error(ERROR_WAIT, &arg));
 	if (!cleaning(&arg))
-		return (p_error(ERROR_CLEAN));
+		return (p_error(ERROR_CLEAN, &arg));
 	return (0);
 }
