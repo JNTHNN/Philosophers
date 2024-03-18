@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:27:11 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/11 18:07:43 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:24:02 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,16 @@ typedef enum e_error
 long	ft_atol(const char *str);
 
 /*	TIME.C	*/
-size_t	get_current_time(void);
-int		ft_usleep(size_t milliseconds);
+long	get_current_time(long start_time);
+void	ft_usleep(unsigned long duration, t_arg *arg);
 
 /*	THREADS.C	*/
 int		wait_threads(t_arg *arg);
 int		create_threads(t_arg *arg);
 
 /*	ROUTINE.C	*/
-void	philo_routine(void *philo);
+void	*philo_routine(void *philo);
+// void	*philo_routine(t_philo *philo);
 
 /*	INIT.C	*/
 int		init_philo(t_arg *arg);
@@ -79,7 +80,8 @@ int		init_fork(t_arg *arg);
 int		init_arg(int argc, char **argv, t_arg *arg);
 
 /*	WRITE.C	*/
-void	write_status(int id, char *str, t_arg *arg);
+// void	write_status(int id, char *str, t_arg *arg);
+void	write_status(char *str, t_philo *philo);
 
 /*	ERROR.C	*/
 int		p_error(int error_code, t_arg *arg);

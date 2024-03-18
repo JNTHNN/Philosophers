@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 21:07:49 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/12 14:22:35 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:26:53 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	init_philo(t_arg *arg)
 		arg->philos[i].left_fork = i;
 		arg->philos[i].right_fork = (i + 1) % arg->number_of_philosophers;
 		arg->philos[i].nb_eat = 0;
-		arg->philos[i].last_meal_time = 0;
 		arg->philos[i].arg = arg;
 		i++;
 	}
@@ -73,7 +72,7 @@ int	init_arg(int argc, char **argv, t_arg *arg)
 		arg->time_to_die = ft_atol(argv[2]);
 		arg->time_to_eat = ft_atol(argv[3]);
 		arg->time_to_sleep = ft_atol(argv[4]);
-		arg->start_simulation = get_current_time();
+		arg->start_simulation = get_current_time(0);
 		if (!check_arg(arg))
 			return (0);
 		if (!init_mutex(arg))

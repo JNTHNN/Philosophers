@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:25:41 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/11 17:07:46 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:58:17 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 static void	philo_starving(t_arg *arg, t_philo *philo)
 {
-	if (arg->time_to_die < (philo->last_meal_time - arg->start_simulation))
+	if (arg->time_to_die < (get_current_time(arg->start_simulation) - philo->last_meal_time))
 	{
-		write_status(philo->id, DEAD, arg);
-		// pthread_mutex_lock(&arg->philo_status);
+		// write_status(philo->id, DEAD, arg);
+		write_status(DEAD, philo);
+		pthread_mutex_lock(&arg->philo_status);
+		// printf(GREEN "%-10zu" RESET ORANGE "%-10d" RESET YELLOW"%s\n" RESET, \
+		// get_current_time(arg->start_simulation), philo->id, DEAD);
 		arg->run = 0;
-		// pthread_mutex_unlock(&arg->philo_status);
+		pthread_mutex_unlock(&arg->philo_status);
 	}
 }
 
@@ -48,7 +51,7 @@ void	philo_dead(t_arg *arg)
 	while (arg->run)
 	{
 		i = 0;
-		ft_usleep(10);
+		// ft_usleep(10000, arg);
 		while (arg->run && i < arg->number_of_philosophers)
 		{
 			pthread_mutex_lock(&arg->dead);
