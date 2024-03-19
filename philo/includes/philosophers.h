@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:27:11 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/18 13:24:02 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:46:39 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int		init_fork(t_arg *arg);
 int		init_arg(int argc, char **argv, t_arg *arg);
 
 /*	WRITE.C	*/
-// void	write_status(int id, char *str, t_arg *arg);
 void	write_status(char *str, t_philo *philo);
+void	write_one_philo(int id, char *str, t_arg *arg);
 
 /*	ERROR.C	*/
 int		p_error(int error_code, t_arg *arg);
@@ -91,7 +91,7 @@ void	philo_dead(t_arg *arg);
 int		check_death(t_arg *arg);
 
 /*	CLEAN.C	*/
-void	destroy_fork(t_arg *arg, int nb_forks);
-int		cleaning(t_arg *arg);
+void	destroy_mutex(t_arg *arg, int nb_forks);
+int		cleaning(t_arg *arg, int error);
 
 #endif

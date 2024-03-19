@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:42:31 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/05 21:34:29 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:44:57 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define P_ERROR_THREAD "\033[1;31mERROR CREATE THREAD\033[0m\n"
 # define P_ERROR_WAIT "\033[1;31mERROR JOIN THREAD\033[0m\n"
 # define P_ERROR_CLEAN "\033[1;31mERROR CLEANING\033[0m\n"
+# define P_ERROR_GTOD "\033[1;31mERROR GETTIMEOFDAY\033[0m\n"
 
 # define GREEN "\033[1;32m"
 # define RESET "\033[0m"

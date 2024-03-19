@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 21:07:49 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/18 12:26:53 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:48:48 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,23 @@ int	init_mutex(t_arg *arg)
 	while (++i < arg->number_of_philosophers)
 	{
 		if (pthread_mutex_init(&arg->forks[i], NULL))
-			return (destroy_fork(arg, i), 0);
+			return (destroy_mutex(arg, i), 0);
 	}
 	if (pthread_mutex_init(&arg->philo_status, NULL))
-		return (destroy_fork(arg, arg->number_of_philosophers), 0);
+		return (destroy_mutex(arg, arg->number_of_philosophers), 0);
 	if (pthread_mutex_init(&arg->dead, NULL))
-		return (destroy_fork(arg, arg->number_of_philosophers), 0);
+		return (destroy_mutex(arg, arg->number_of_philosophers), 0);
 	return (1);
 }
 
 int	check_arg(t_arg *arg)
 {
-	if (arg->number_of_philosophers < 0 || arg->time_to_die <= 0 \
-		|| arg->time_to_eat <= 0 || arg->time_to_sleep <= 0)
+	if (arg->number_of_philosophers < 0
+		|| arg->number_of_philosophers > 200
+		|| arg->time_to_die < 60
+		|| arg->time_to_eat < 60
+		|| arg->time_to_sleep < 60
+		|| arg->nb_eat_limit == 0)
 		return (0);
 	return (1);
 }
@@ -64,15 +68,19 @@ int	init_arg(int argc, char **argv, t_arg *arg)
 {
 	if (argc == 5 || argc == 6)
 	{
-		if (argc == 6)
-			arg->nb_eat_limit = ft_atol(argv[5]);
-		else
-			arg->nb_eat_limit = -1;
 		arg->number_of_philosophers = ft_atol(argv[1]);
 		arg->time_to_die = ft_atol(argv[2]);
 		arg->time_to_eat = ft_atol(argv[3]);
 		arg->time_to_sleep = ft_atol(argv[4]);
 		arg->start_simulation = get_current_time(0);
+		if (argc == 6)
+		{
+			if (ft_atol(argv[5]) == ERROR_ARG)
+				return (0);
+			arg->nb_eat_limit = ft_atol(argv[5]);
+		}
+		else
+			arg->nb_eat_limit = -1;
 		if (!check_arg(arg))
 			return (0);
 		if (!init_mutex(arg))

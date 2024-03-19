@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 21:05:12 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/18 15:53:19 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:44:47 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ long	get_current_time(long start_time)
 	long			time_ms;
 
 	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
+		write(2, P_ERROR_GTOD, 31);
 	time_ms =  (time.tv_sec * 1000) + (time.tv_usec / 1000) - start_time;
 	return (time_ms);
 }
