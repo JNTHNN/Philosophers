@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:27:11 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/19 12:46:39 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:05:37 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ long	ft_atol(const char *str);
 
 /*	TIME.C	*/
 long	get_current_time(long start_time);
-void	ft_usleep(unsigned long duration, t_arg *arg);
+// void	ft_usleep(unsigned long duration, t_arg *arg);
+void	ft_usleep(size_t milliseconds, t_arg *arg);
+
 
 /*	THREADS.C	*/
 int		wait_threads(t_arg *arg);

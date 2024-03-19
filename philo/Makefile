@@ -6,7 +6,7 @@
 #    By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 10:45:33 by jgasparo          #+#    #+#              #
-#    Updated: 2024/03/18 15:22:59 by jgasparo         ###   ########.fr        #
+#    Updated: 2024/03/19 15:13:47 by jgasparo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC = main.c \
 		sources/clean.c \
 		 
 OBJ = $(SRC:.c=.o)
-LIBS = -lpthread #-fsanitize=address -g
+LIBS = -lpthread -fsanitize=address -g
 TEST = -fsanitize=thread -g
 
 all: $(NAME)

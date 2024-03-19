@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 10:30:35 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/19 12:52:28 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:17:47 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	*philo_routine(void *p_arg)
 	philo = (t_philo *)p_arg;
 	arg = philo->arg;
 	philo->last_meal_time = arg->start_simulation;
-	if (philo->id)
-		ft_usleep(10, arg);
+	if (philo->id % 2)
+		ft_usleep(50, arg);
 	while (19)
 	{
 		pthread_mutex_lock(&arg->philo_status);

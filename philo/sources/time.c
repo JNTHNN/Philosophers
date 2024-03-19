@@ -6,7 +6,7 @@
 /*   By: jgasparo <jgasparo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 21:05:12 by jgasparo          #+#    #+#             */
-/*   Updated: 2024/03/19 12:44:47 by jgasparo         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:07:03 by jgasparo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,48 @@ long	get_current_time(long start_time)
 	return (time_ms);
 }
 
-void	ft_usleep(unsigned long duration, t_arg *arg)
+// void	ft_usleep(unsigned long duration, t_arg *arg)
+// {
+// 	unsigned long	start;
+
+// 	start = get_current_time(0);
+// 	while (19)
+// 	{
+// 		if (get_current_time(0) - start >= duration)
+// 			break ;
+// 		pthread_mutex_lock(&arg->philo_status);
+// 		if (!arg->run)
+// 		{
+// 			pthread_mutex_unlock(&arg->philo_status);
+// 			break ;
+// 		}
+// 		pthread_mutex_unlock(&arg->philo_status);
+// 		usleep(150);
+// 	}
+// }
+
+void	ft_usleep(size_t milliseconds, t_arg *arg)
 {
-	unsigned long	start;
+	size_t	start;
+	size_t	elapsed;
+	size_t	remaining;
+	(void)arg;
 
 	start = get_current_time(0);
-	while (19)
+	remaining = milliseconds;
+	while (remaining > 0)
 	{
-		if (get_current_time(0) - start >= duration)
-			break ;
-		pthread_mutex_lock(&arg->philo_status);
-		if (!arg->run)
-		{
-			pthread_mutex_unlock(&arg->philo_status);
-			break ;
-		}
-		pthread_mutex_unlock(&arg->philo_status);
-		usleep(duration / 10);
+		// if (philo_dead(arg))
+		// 	break ;
+		if (remaining > 1)
+			usleep(500);
+		else
+			usleep(remaining * 1000);
+		elapsed = get_current_time(0) - start;
+		if (milliseconds > elapsed)
+			remaining = milliseconds - elapsed;
+		else
+			remaining = 0;
 	}
 }
 
