@@ -19,7 +19,7 @@ long	get_current_time(long start_time)
 
 	if (gettimeofday(&time, NULL) == -1)
 		write(2, P_ERROR_GTOD, 31);
-	time_ms =  (time.tv_sec * 1000) + (time.tv_usec / 1000) - start_time;
+	time_ms = (time.tv_sec * 1000) + (time.tv_usec / 1000) - start_time;
 	return (time_ms);
 }
 
@@ -39,41 +39,6 @@ void	ft_usleep(unsigned long duration, t_arg *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&arg->philo_status);
-		usleep(10000);
+		usleep(500);
 	}
 }
-
-// void	ft_usleep(size_t milliseconds, t_arg *arg)
-// {
-// 	size_t	start;
-// 	size_t	elapsed;
-// 	size_t	remaining;
-// 	(void)arg;
-
-// 	start = get_current_time(0);
-// 	remaining = milliseconds;
-// 	while (remaining > 0)
-// 	{
-// 		// if (philo_dead(arg))
-// 		// 	break ;
-// 		if (remaining > 1)
-// 			usleep(500);
-// 		else
-// 			usleep(remaining * 1000);
-// 		elapsed = get_current_time(0) - start;
-// 		if (milliseconds > elapsed)
-// 			remaining = milliseconds - elapsed;
-// 		else
-// 			remaining = 0;
-// 	}
-// }
-
-// int	ft_usleep(size_t milliseconds)
-// {
-// 	size_t	start;
-
-// 	start = get_current_time();
-// 	while ((get_current_time() - start) < milliseconds)
-// 		usleep(milliseconds / 10);
-// 	return (0);
-// }

@@ -15,6 +15,7 @@
 void	destroy_mutex(t_arg *arg, int nb_forks)
 {
 	int	i;
+	(void)nb_forks;
 
 	i = 0;
 	if (arg->forks)
@@ -28,7 +29,7 @@ void	destroy_mutex(t_arg *arg, int nb_forks)
 	}
 	if (pthread_mutex_destroy(&arg->philo_status))
 		return ;
-	if (pthread_mutex_destroy(&arg->forks[i]))
+	if (pthread_mutex_destroy(&arg->dead))
 		return ;
 	free(arg->forks);
 }
@@ -37,9 +38,7 @@ int	cleaning(t_arg *arg, int error)
 {
 	if (arg)
 	{
-		if (error == ERROR_ARG)
-			destroy_mutex(arg, 0);
-		else
+		if (error != ERROR_ARG)
 			destroy_mutex(arg, arg->number_of_philosophers);
 		free(arg->philos);
 		return (1);

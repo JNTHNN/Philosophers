@@ -14,7 +14,7 @@
 NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRC = main.c \
+SRC = sources/main.c \
 		sources/ft_atol.c \
 		sources/threads.c \
 		sources/time.c \
@@ -27,8 +27,7 @@ SRC = main.c \
 		 
 OBJ = $(SRC:.c=.o)
 LIBS = -lpthread 
-
-
+TEST = -fsanitize=thread -g
 all: $(NAME)
 
 $(NAME): $(OBJ)

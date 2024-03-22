@@ -12,18 +12,18 @@
 
 #include "../includes/philosophers.h"
 
-void	thinking(t_philo *philo)
+static void	thinking(t_philo *philo)
 {
 	write_status(THINK, philo);
 }
 
-void	sleeping(t_philo *philo)
+static void	sleeping(t_philo *philo)
 {
 	write_status(SLEEP, philo);
 	ft_usleep(philo->arg->time_to_sleep, philo->arg);
 }
 
-void	eating(t_philo *philo)
+static void	eating(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->arg->forks[philo->left_fork]);
 	write_status(FORK, philo);
@@ -62,24 +62,3 @@ void	*philo_routine(void *p_arg)
 	pthread_mutex_unlock(&arg->philo_status);
 	return (NULL);
 }
-
-
-
-// void	*philo_routine(t_philo *philo)
-// {
-// 	if (philo->id)
-// 		ft_usleep(50, philo->arg);
-// 	while (19)
-// 	{
-// 		pthread_mutex_lock(&philo->arg->philo_status);
-// 		if (!philo->arg->run)
-// 			break ;
-// 		pthread_mutex_unlock(&philo->arg->philo_status);
-// 		eating(philo->id, philo);
-// 		sleeping(philo->arg, philo);
-// 		thinking(philo->arg, philo);
-// 	}
-// 	pthread_mutex_unlock(&philo->arg->philo_status);
-// 	return (NULL);
-	
-// }

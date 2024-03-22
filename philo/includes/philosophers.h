@@ -60,39 +60,35 @@ typedef enum e_error
 	ERROR_CLEAN = -6,
 }	t_error;
 
+/*			FT_ATOL.C		*/
 long	ft_atol(const char *str);
 
-/*	TIME.C	*/
+/*			TIME.C			*/
 long	get_current_time(long start_time);
-// void	ft_usleep(unsigned long duration, t_arg *arg);
 void	ft_usleep(size_t milliseconds, t_arg *arg);
 
-
-/*	THREADS.C	*/
+/*			THREADS.C		*/
 int		wait_threads(t_arg *arg);
 int		create_threads(t_arg *arg);
 
-/*	ROUTINE.C	*/
+/*			ROUTINE.C		*/
 void	*philo_routine(void *philo);
-// void	*philo_routine(t_philo *philo);
 
-/*	INIT.C	*/
+/*			INIT.C			*/
 int		init_philo(t_arg *arg);
-int		init_fork(t_arg *arg);
 int		init_arg(int argc, char **argv, t_arg *arg);
 
-/*	WRITE.C	*/
+/*			WRITE.C			*/
 void	write_status(char *str, t_philo *philo);
 void	write_one_philo(int id, char *str, t_arg *arg);
 
-/*	ERROR.C	*/
+/*			ERROR.C			*/
 int		p_error(int error_code, t_arg *arg);
 
-/*	DEAD.C	*/
+/*			DEAD.C			*/
 void	philo_dead(t_arg *arg);
-int		check_death(t_arg *arg);
 
-/*	CLEAN.C	*/
+/*			CLEAN.C			*/
 void	destroy_mutex(t_arg *arg, int nb_forks);
 int		cleaning(t_arg *arg, int error);
 

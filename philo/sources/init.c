@@ -32,7 +32,7 @@ int	init_philo(t_arg *arg)
 	return (1);
 }
 
-int	init_mutex(t_arg *arg)
+static int	init_mutex(t_arg *arg)
 {
 	int	i;
 
@@ -52,7 +52,7 @@ int	init_mutex(t_arg *arg)
 	return (1);
 }
 
-int	check_arg(t_arg *arg)
+static int	check_arg(t_arg *arg)
 {
 	if (arg->number_of_philosophers < 0
 		|| arg->number_of_philosophers > 200
