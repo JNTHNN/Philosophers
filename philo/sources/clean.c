@@ -15,7 +15,6 @@
 void	destroy_mutex(t_arg *arg, int nb_forks)
 {
 	int	i;
-	(void)nb_forks;
 
 	i = 0;
 	if (arg->forks)

@@ -27,7 +27,7 @@ SRC = sources/main.c \
 		 
 OBJ = $(SRC:.c=.o)
 LIBS = -lpthread 
-TEST = -fsanitize=thread -g
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
