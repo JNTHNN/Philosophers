@@ -46,7 +46,6 @@ void	*philo_routine(void *p_arg)
 
 	philo = (t_philo *)p_arg;
 	arg = philo->arg;
-	philo->last_meal_time = arg->start_simulation;
 	if (philo->id % 2)
 		ft_usleep(50, arg);
 	while (19)

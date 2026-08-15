@@ -17,6 +17,7 @@ static int	one_philo(t_arg *arg)
 	write_one_philo(1, FORK, arg);
 	ft_usleep(arg->time_to_die, arg);
 	write_one_philo(1, DEAD, arg);
+	cleaning(arg, 0);
 	return (0);
 }
 

@@ -26,10 +26,8 @@ void	destroy_mutex(t_arg *arg, int nb_forks)
 			i++;
 		}
 	}
-	if (pthread_mutex_destroy(&arg->philo_status))
-		return ;
-	if (pthread_mutex_destroy(&arg->dead))
-		return ;
+	pthread_mutex_destroy(&arg->philo_status);
+	pthread_mutex_destroy(&arg->dead);
 	free(arg->forks);
 }
 

@@ -68,6 +68,8 @@ int	init_arg(int argc, char **argv, t_arg *arg)
 {
 	if (argc == 5 || argc == 6)
 	{
+		arg->philos = NULL;
+		arg->run = 1;
 		arg->number_of_philosophers = ft_atol(argv[1]);
 		arg->time_to_die = ft_atol(argv[2]);
 		arg->time_to_eat = ft_atol(argv[3]);

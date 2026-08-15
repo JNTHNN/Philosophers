@@ -13,7 +13,7 @@
 
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
 SRC = sources/main.c \
 		sources/ft_atol.c \
 		sources/threads.c \
